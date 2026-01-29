@@ -1,0 +1,45 @@
+%%time
+%%capture captured_output
+%pip install scikit-learn==1.7.0 tensorflow==2.19 numpy==1.26 matplotlib==3.9.2 skillsnetwork
+%pip install torch==2.8.0+cpu torchvision==0.23.0+cpu torchaudio==2.8.0+cpu \
+    --index-url https://download.pytorch.org/whl/cpu
+
+import warnings
+warnings.filterwarnings('ignore')
+
+import os
+import time
+import httpx
+import random
+import numpy as np
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+
+import torch
+import torch.nn as nn
+#import torch.optim as optim
+from torchvision import transforms
+from torchvision import datasets
+from torch.utils.data import DataLoader
+from torch.utils.data import  random_split
+import torch.nn.functional as F
+
+print("Imported libraries")
+
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+import tensorflow as tf
+gpu_list = tf.config.list_physical_devices('GPU')
+device = "gpu" if gpu_list != [] else "cpu"
+print(f"TensorFlow {tf.__version__}  |  GPUs found: {tf.config.list_physical_devices('GPU')}")
+
+SEED = 7331
+set_seed(SEED)
+print(f"Global seed set to {SEED} - Processes are now deterministic.")
+
+if not os.path.exists(pytorch_state_dict_path):
+    print("Unable to find the PyTorch model at give path. Please check...")
+else:
+    print(f"Found the pre-trained PyTorch model:\n{pytorch_state_dict_name} --at------> {pytorch_state_dict_path}")
+
