@@ -71,7 +71,7 @@ You should see "(my_env)" before your machine as the env had set up successfully
 
 - Second, you'll need to install necessary packages.
 ```bash
-pip install -r requirements.txt
+time pip install -r requirements.txt
 ```
 
 - Third, after libs installed, you can now compile and excute the code.
