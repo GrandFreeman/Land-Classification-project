@@ -4,6 +4,9 @@ dataset_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.clou
 import os
 import skillsnetwork
 
+from contextlib import redirect_stdout
+import io
+
 from def_frames import check_skillnetwork_extraction
 from def_frames import download_tar_dataset
 from def_frames import download_model
@@ -30,10 +33,8 @@ pytorch_state_dict_path = os.path.join(data_dir, pytorch_state_dict_name)
 
 await download_model(pytorch_state_dict_url, pytorch_state_dict_path)
 
+f = io.StringIO()
+with redirect_stdout(f):
+    print("hello")
 
-
-%%time
-%%capture captured_output
-%pip install scikit-learn==1.7.0 tensorflow==2.19 numpy==1.26 matplotlib==3.9.2 skillsnetwork
-%pip install torch==2.8.0+cpu torchvision==0.23.0+cpu torchaudio==2.8.0+cpu \
-    --index-url https://download.pytorch.org/whl/cpu
+captured_output = f.getvalue()
