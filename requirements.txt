@@ -1,0 +1,9 @@
+scikit-learn==1.7.0
+tensorflow==2.19
+numpy==1.26
+matplotlib==3.9.2
+skillsnetwork
+
+torch==2.8.0+cpu
+torchvision==0.23.0+cpu
+torchaudio==2.8.0+cpu
