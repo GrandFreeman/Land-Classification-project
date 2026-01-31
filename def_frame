@@ -1,3 +1,55 @@
+#====================== preparation defs =========================
+
+def check_skillnetwork_extraction(extract_dir):
+    """Check if the environment allows symlink creation for download/extraction."""
+    symlink_test = os.path.join(extract_dir, "symlink_test")
+    if not os.path.exists(symlink_test):
+        os.symlink(os.path.join(os.sep, "tmp"), symlink_test)
+        print("Write permissions available for downloading and extracting the dataset tar file")
+        os.unlink(symlink_test)
+
+async def download_tar_dataset(url, tar_path, extract_dir):
+    """Download and extract dataset tar file asynchronously."""
+    if not os.path.exists(tar_path):
+        try:
+            print(f"Downloading from {url}...")
+            import httpx
+            async with httpx.AsyncClient() as client:
+                response = await client.get(url, follow_redirects=True)
+                response.raise_for_status()
+                with open(tar_path, "wb") as f:
+                    f.write(response.content)
+            print(f"Successfully downloaded '{tar_path}'.")
+        except Exception as e:
+            print(f"Download error: {e}")
+    else:
+        print(f"Dataset tar file already exists at: {tar_path}")
+    import tarfile
+    with tarfile.open(tar_path, 'r:*') as tar_ref:
+        tar_ref.extractall(path=extract_dir)
+        print(f"Successfully extracted to '{extract_dir}'.")
+
+#=========================================================================================
+
+async def download_model(url, model_path):
+    if not os.path.exists(model_path):
+        try:
+            print(f"Downloading from {url}...")
+            import httpx
+            async with httpx.AsyncClient() as client:
+                response = await client.get(url, follow_redirects=True)
+                response.raise_for_status()
+                with open(model_path, "wb") as f:
+                    f.write(response.content)
+            print(f"Successfully downloaded '{model_path}'.")
+        except Exception as e:
+            print(f"Download error: {e}")
+    else:
+        print(f"Model file already downloaded at: {model_path}")
+
+
+#=========================================================================================
+
 def set_seed(seed: int = 42) -> None:
     """Seed Python, NumPy, tensorflow, and PyTorch (CPU & all GPUs) and
     make cuDNN run in deterministic mode."""
@@ -148,3 +200,43 @@ def evaluate(model, loader, criterion, device):
             loss_sum += loss.item() * x.size(0)
             correct  += (out.argmax(1) == y).sum().item()
     return loss_sum / len(loader.dataset), correct / len(loader.dataset)# Set device
+
+#======================================plot  and evaluate===============================================
+
+# define a function to get the metrics comprehensively
+def model_metrics(y_true, y_pred, y_prob, class_labels):
+    y_prob = np.array(y_prob)
+    if len(y_prob.shape)<2:
+        roc_score = roc_auc_score(y_true, y_prob)
+    elif len(y_prob.shape)==2:
+        roc_score = roc_auc_score(y_true, y_prob[:,1])
+    else:
+        roc_score = np.nan
+    metrics = {'Accuracy': accuracy_score(y_true, y_pred),
+               'Precision': precision_score(y_true, y_pred),
+               'Recall': recall_score(y_true, y_pred),
+               'Loss': log_loss(y_true, y_prob),
+               'F1 Score': f1_score(y_true, y_pred),
+               'ROC-AUC': roc_score,
+               'Confusion Matrix': confusion_matrix(y_true, y_pred),
+               'Classification Report': classification_report(y_true, y_pred, target_names=class_labels, digits=4),
+               "Class labels": class_labels
+              }
+    return metrics
+
+#function to print the metrics
+def print_metrics(y_true, y_pred, y_prob, class_labels, model_name):
+    metrics = model_metrics(y_true, y_pred, y_prob, class_labels)
+    
+    print(f"Evaluation metrics for the \033[1m{model_name}\033[0m")
+    print(f"Accuracy: {'':<1}{metrics["Accuracy"]:.4f}")
+    if metrics["ROC-AUC"] != np.nan:
+        print(f"ROC-AUC: {'':<2}{metrics["ROC-AUC"]:.4f}")
+    print(f"Loss: {'':<5}{metrics["Loss"]:.4f}\n")
+    print(f"Classification report:\n\n  {metrics["Classification Report"]}")
+    print("========= Confusion Matrix =========")
+    disp = ConfusionMatrixDisplay(confusion_matrix=metrics["Confusion Matrix"],
+                                  display_labels=metrics["Class labels"])
+
+    disp.plot()
+    plt.show()
