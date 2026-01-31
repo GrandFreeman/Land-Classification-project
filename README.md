@@ -14,6 +14,8 @@ Land classification\
 ├── preparation.py      # .\
 &emsp;&emsp;└── document_loader     # PDF / CSV / TXT / json loader
 
+├── requirements.py      # install necessary packages.\
+
 ├── def_frames.py                # Gradio entry point \
 &emsp;&emsp;├── llm \
 &emsp;&emsp;&emsp;&emsp;├── watsonx_llm()    # get_llm() \
