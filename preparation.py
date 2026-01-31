@@ -4,9 +4,6 @@ dataset_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.clou
 import os
 import skillsnetwork
 
-from contextlib import redirect_stdout
-import io
-
 from def_frames import check_skillnetwork_extraction
 from def_frames import download_tar_dataset
 from def_frames import download_model
@@ -33,8 +30,3 @@ pytorch_state_dict_path = os.path.join(data_dir, pytorch_state_dict_name)
 
 await download_model(pytorch_state_dict_url, pytorch_state_dict_path)
 
-f = io.StringIO()
-with redirect_stdout(f):
-    print("hello")
-
-captured_output = f.getvalue()
