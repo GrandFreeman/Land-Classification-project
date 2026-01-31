@@ -36,6 +36,7 @@ from sklearn.preprocessing import label_binarize
 
 from def_frames import set_seed
 from def_frames import CNN_ViT_Hybrid
+from def_frames import evaluate
 from def_frames import model_metrics
 from def_frames import print_metrics
 
@@ -112,6 +113,8 @@ with torch.no_grad():
         all_probs_pytorch.extend(probs.cpu())
         all_preds_pytorch.extend(preds.cpu().numpy().flatten())
         all_labels_pytorch.extend(labels.numpy())
+
+evaluate(pytorch_model, test_loader, nn.CrossEntropyLoss(), device)
 
 print_metrics(all_labels_pytorch, all_preds_pytorch, all_probs_pytorch, agri_class_labels, 
     'Pytorch CNN-Vit Hybrid Model'
