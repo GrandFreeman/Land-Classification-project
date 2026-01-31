@@ -4,34 +4,10 @@ dataset_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.clou
 import os
 import skillsnetwork
 
-def check_skillnetwork_extraction(extract_dir):
-    """Check if the environment allows symlink creation for download/extraction."""
-    symlink_test = os.path.join(extract_dir, "symlink_test")
-    if not os.path.exists(symlink_test):
-        os.symlink(os.path.join(os.sep, "tmp"), symlink_test)
-        print("Write permissions available for downloading and extracting the dataset tar file")
-        os.unlink(symlink_test)
+from def_frames import check_skillnetwork_extraction
+from def_frames import download_tar_dataset
+from def_frames import download_model
 
-async def download_tar_dataset(url, tar_path, extract_dir):
-    """Download and extract dataset tar file asynchronously."""
-    if not os.path.exists(tar_path):
-        try:
-            print(f"Downloading from {url}...")
-            import httpx
-            async with httpx.AsyncClient() as client:
-                response = await client.get(url, follow_redirects=True)
-                response.raise_for_status()
-                with open(tar_path, "wb") as f:
-                    f.write(response.content)
-            print(f"Successfully downloaded '{tar_path}'.")
-        except Exception as e:
-            print(f"Download error: {e}")
-    else:
-        print(f"Dataset tar file already exists at: {tar_path}")
-    import tarfile
-    with tarfile.open(tar_path, 'r:*') as tar_ref:
-        tar_ref.extractall(path=extract_dir)
-        print(f"Successfully extracted to '{extract_dir}'.")
 
 try:
     check_skillnetwork_extraction(data_dir)
@@ -47,21 +23,6 @@ except Exception as e:
     tar_path = os.path.join(data_dir, file_name)
     await download_tar_dataset(dataset_url, tar_path, data_dir)
 
-async def download_model(url, model_path):
-    if not os.path.exists(model_path):
-        try:
-            print(f"Downloading from {url}...")
-            import httpx
-            async with httpx.AsyncClient() as client:
-                response = await client.get(url, follow_redirects=True)
-                response.raise_for_status()
-                with open(model_path, "wb") as f:
-                    f.write(response.content)
-            print(f"Successfully downloaded '{model_path}'.")
-        except Exception as e:
-            print(f"Download error: {e}")
-    else:
-        print(f"Model file already downloaded at: {model_path}")
 
 pytorch_state_dict_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/rFBrDlu1NNcAzir5Uww8eg/pytorch-cnn-vit-ai-capstone-model-state-dict.pth"
 pytorch_state_dict_name = "pytorch_cnn_vit_ai_capstone_model_state_dict.pth"
@@ -69,3 +30,10 @@ pytorch_state_dict_path = os.path.join(data_dir, pytorch_state_dict_name)
 
 await download_model(pytorch_state_dict_url, pytorch_state_dict_path)
 
+
+
+%%time
+%%capture captured_output
+%pip install scikit-learn==1.7.0 tensorflow==2.19 numpy==1.26 matplotlib==3.9.2 skillsnetwork
+%pip install torch==2.8.0+cpu torchvision==0.23.0+cpu torchaudio==2.8.0+cpu \
+    --index-url https://download.pytorch.org/whl/cpu
