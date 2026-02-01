@@ -229,14 +229,14 @@ def print_metrics(y_true, y_pred, y_prob, class_labels, model_name):
     metrics = model_metrics(y_true, y_pred, y_prob, class_labels)
     
     print(f"Evaluation metrics for the \033[1m{model_name}\033[0m")
-    print(f"Accuracy: {'':<1}{metrics["Accuracy"]:.4f}")
+    print(f"Accuracy: {'':<1}{metrics['Accuracy']:.4f}")
     if metrics["ROC-AUC"] != np.nan:
-        print(f"ROC-AUC: {'':<2}{metrics["ROC-AUC"]:.4f}")
-    print(f"Loss: {'':<5}{metrics["Loss"]:.4f}\n")
-    print(f"Classification report:\n\n  {metrics["Classification Report"]}")
+        print(f"ROC-AUC: {'':<2}{metrics['ROC-AUC']:.4f}")
+    print(f"Loss: {'':<5}{metrics['Loss']:.4f}\n")
+    print(f"Classification report:\n\n  {metrics['Classification Report']}")
     print("========= Confusion Matrix =========")
-    disp = ConfusionMatrixDisplay(confusion_matrix=metrics["Confusion Matrix"],
-                                  display_labels=metrics["Class labels"])
+    disp = ConfusionMatrixDisplay(confusion_matrix=metrics['Confusion Matrix'],
+                                  display_labels=metrics['Class labels'])
 
     disp.plot()
     plt.show()
