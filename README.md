@@ -71,6 +71,10 @@ You should see "(my_env)" before your machine as the env had set up successfully
 - Second, you'll need to download all five .py files which are in repository to your local machine, and then install any necessary packages.
 
 ```bash
+python -m pip install skillsnetwork
+python -m pip install httpx
+```
+```bash
 time pip install -r requirements.txt
 ```
 
