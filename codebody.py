@@ -3,15 +3,15 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import os
-import time
 import httpx
 import random
 import numpy as np
-from tqdm import tqdm
-import matplotlib.pyplot as plt
+#from tqdm import tqdm
+#import matplotlib.pyplot as plt
+import tensorflow as tf
 
 import torch
-import torch.nn as nn
+#import torch.nn as nn
 #import torch.optim as optim
 from torchvision import transforms
 from torchvision import datasets
@@ -47,7 +47,7 @@ print("Imported libraries")
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-import tensorflow as tf
+
 gpu_list = tf.config.list_physical_devices('GPU')
 device = "gpu" if gpu_list != [] else "cpu"
 print(f"TensorFlow {tf.__version__}  |  GPUs found: {tf.config.list_physical_devices('GPU')}")
