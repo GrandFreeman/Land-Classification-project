@@ -57,23 +57,18 @@ Land classification\
 
 ## How to operate
 
-- First, you might need to create a virtual environment to operate it.
-
-### Setting up a virtual environment
+- (Optional)You could create a virtual environment to operate it.
 
 ```bash
 python3.11 -m venv my_env
 source my_env/bin/activate
-
 ```
-You should see "(my_env)" before your machine as the env had set up successfully.
+&emsp;&emsp;&emsp;&emsp; You should see "(my_env)" before your machine as the env had set up successfully.
 
-- Second, you'll need to download all five .py files which are in repository to your local machine, and then install any necessary packages.
+- First, you'll need to download all five .py files which are in repository to your local machine.
 
-```bash
-python -m pip install skillsnetwork
-python -m pip install httpx
-```
+- Second, install any necessary packages to the local machine.
+
 ```bash
 time pip install -r requirements.txt
 ```
