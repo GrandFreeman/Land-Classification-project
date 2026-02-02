@@ -3,7 +3,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import os
-import numpy as np
 from tqdm import tqdm
 import tensorflow as tf
 
