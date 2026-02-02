@@ -68,18 +68,19 @@ source my_env/bin/activate
 ```
 You should see "(my_env)" before your machine as the env had set up successfully.
 
-- Second, you need to download all five .py files to local machine, and execute preparation.py to prepare data and pretrain model.
+- Second, you'll need to download all five .py files which are in repository to your local machine, and then install any necessary packages.
+
+```bash
+time pip install -r requirements.txt
+```
+
+- Third, you should be able to execute preparation.py to prepare data and pretrain model.
 
 ```bash
 python3.11 preparation.py
 ```
 
-- Third, you'll need to install necessary packages.
-```bash
-time pip install -r requirements.txt
-```
-
-- Finally, after libs installed and files ready, you can now compile and excute the code.
+- Finally, after libs are installed and files ready, you can now compile and excute the code.
 - You shall see the loss & accuracy score, and the confusion matrix.
 
 ```bash
