@@ -20,7 +20,7 @@ async def main():
 
 try:
     check_skillnetwork_extraction(data_dir)
-    if __name__ == "__main_skill__":
+    if __name__ == "__main__":
         asyncio.run(main_skill())
 except Exception as e:
     print(e)
@@ -31,7 +31,7 @@ except Exception as e:
     from pathlib import Path
     file_name = Path(dataset_url).name
     tar_path = os.path.join(data_dir, file_name)
-    if __name__ == "__main_tar__":
+    if __name__ == "__main__":
         asyncio.run(main_tar())
 
 
