@@ -1,9 +1,9 @@
-data_dir = "."
-dataset_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/4Z1fwRR295-1O3PMQBH6Dg/images-dataSAT.tar"
-
 import os
 import skillsnetwork
 import asyncio
+
+from variables_set import data_dir 
+from variables_set import dataset_url 
 
 from def_frames import check_skillnetwork_extraction
 from def_frames import download_tar_dataset
