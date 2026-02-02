@@ -3,20 +3,15 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import os
-#import httpx
-#import random
 import numpy as np
-#from tqdm import tqdm
-#import matplotlib.pyplot as plt
+from tqdm import tqdm
 import tensorflow as tf
 
 import torch
-#import torch.nn as nn
-#import torch.optim as optim
 from torchvision import transforms
 from torchvision import datasets
 from torch.utils.data import DataLoader
-#from torch.utils.data import  random_split
+from torch.utils.data import  random_split
 import torch.nn.functional as F
 
 from sklearn.metrics import (accuracy_score,
@@ -97,7 +92,6 @@ else:
 pytorch_model.load_state_dict(torch.load(pytorch_state_dict_path, map_location=map_location), strict=False)
 print("Loaded model state dict, now getting predictions")
 
-%%time
 all_preds_pytorch = []
 all_labels_pytorch = []
 all_probs_pytorch = []
