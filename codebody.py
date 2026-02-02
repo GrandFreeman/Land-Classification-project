@@ -36,6 +36,13 @@ from def_frames import print_metrics
 
 #=========================================================
 
+from variables_set import data_dir 
+from variables_set import dataset_url 
+from preparation import pytorch_state_dict_url 
+from preparation import pytorch_state_dict_name 
+from preparation import pytorch_state_dict_path
+
+
 print("Imported libraries")
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
