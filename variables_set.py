@@ -1,3 +1,7 @@
+import os
+data_dir = "."
+dataset_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/4Z1fwRR295-1O3PMQBH6Dg/images-dataSAT.tar"
+
 dataset_path = os.path.join(data_dir, "images_dataSAT")
 
 img_w, img_h = 64, 64
