@@ -14,19 +14,6 @@ from torch.utils.data import DataLoader
 from torch.utils.data import  random_split
 import torch.nn.functional as F
 
-from sklearn.metrics import (accuracy_score,
-                             precision_score,
-                             recall_score,
-                             f1_score,
-                             roc_curve, 
-                             roc_auc_score,
-                             log_loss,
-                             classification_report,
-                             confusion_matrix,
-                             ConfusionMatrixDisplay,
-                            )
-from sklearn.preprocessing import label_binarize
-
 #===============def_frames import=========================
 
 from def_frames import set_seed
