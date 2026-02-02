@@ -7,6 +7,7 @@ from tqdm import tqdm
 import tensorflow as tf
 
 import torch
+import torch.nn as nn
 from torchvision import transforms
 from torchvision import datasets
 from torch.utils.data import DataLoader
