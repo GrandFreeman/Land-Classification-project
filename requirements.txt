@@ -3,6 +3,7 @@ tensorflow==2.19
 numpy==1.26
 matplotlib==3.9.2
 skillsnetwork
+httpx
 
 torch==2.8.0+cpu
 torchvision==0.23.0+cpu
