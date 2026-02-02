@@ -57,13 +57,24 @@ Land classification\
 
 ## How to operate
 
-- First, you need to download all five .py files to local machine, and execute preparation.py to prepare data and pretrain model.
+- First, you might need to create a virtual environment to operate it.
+
+### Setting up a virtual environment
+
+```bash
+python3.11 -m venv my_env
+source my_env/bin/activate
+
+```
+You should see "(my_env)" before your machine as the env had set up successfully.
+
+- Second, you need to download all five .py files to local machine, and execute preparation.py to prepare data and pretrain model.
 
 ```bash
 python3.11 preparation.py
 ```
 
-- Second, you'll need to install necessary packages.
+- Third, you'll need to install necessary packages.
 ```bash
 time pip install -r requirements.txt
 ```
