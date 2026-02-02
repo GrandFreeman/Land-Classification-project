@@ -48,6 +48,8 @@ print("Imported libraries")
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
 
 gpu_list = tf.config.list_physical_devices('GPU')
 device = "gpu" if gpu_list != [] else "cpu"
