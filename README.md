@@ -85,4 +85,5 @@ python3.11 preparation.py
 ```bash
 python3.11 codebody.py
 ```
-
+In case the terminal can't show proper visional result, the expected confusion metrix demo is shown in the figure below. 
+![image](land_cls_cufm.jpg)
