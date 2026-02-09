@@ -26,7 +26,7 @@ Land classification\
 
 &emsp;&emsp;├── ViT\
 &emsp;&emsp;&emsp;&emsp;├── __init__\
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;├── TransformerBlock    # include multi-head Self attention \
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;├── TransformerBlock(Encoder Block)    # include multi-head Self attention \
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;├── __init__\
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;├── MHSA									# multi-head Self attention \
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;├── LayerNorm 						# pos_embedding() \
